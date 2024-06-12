@@ -2,8 +2,9 @@ services:
   kobuki:
     build:
       dockerfile: Dockerfile
-    command: ros2 launch kobuki_node kobuki_node.launch.py
-    restart: unless-stopped
+    command: ros2 launch kobuki kobuki_joystick.launch.py
+    restart: always
+    privileged: true
     network_mode: host
     volumes:
-      - /dev:/dev
+      - /dev/kobuki:/dev/kobuki
