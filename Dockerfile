@@ -43,7 +43,7 @@ RUN rosdep init && rosdep update && rosdep install --from-paths ${KOBUKI_ROOT}/s
 
 #############################################################################################################################
 #####
-#####   Install Kobuki packages
+#####   Build Kobuki packages
 #####
 #############################################################################################################################
 
@@ -52,6 +52,38 @@ WORKDIR ${KOBUKI_ROOT}
 RUN . /opt/ros/humble/setup.sh && colcon build
 
 WORKDIR /
+
+
+#############################################################################################################################
+#####
+#####   Remove workspace source and build files that are not relevent to running the system
+#####
+#############################################################################################################################
+
+RUN rm -rf ${KOBUKI_ROOT}/src
+RUN rm -rf ${KOBUKI_ROOT}/log
+RUN rm -rf ${KOBUKI_ROOT}/build
+RUN rm -rf /var/lib/apt/lists/*
+RUN rm -rf /tmp/*
+
+RUN apt-get clean
+
+
+#---------------------------------------------------------------------------------------------------------------------------
+#----
+#----   Start final release image
+#----
+#---------------------------------------------------------------------------------------------------------------------------
+
+
+FROM ros:humble-ros-core-jammy as final
+
+## Parameters
+ENV KOBUKI_ROOT=/kobuki
+
+WORKDIR /
+
+COPY --from=base / /
 
 COPY workspace_entrypoint.sh /workspace_entrypoint.sh
 

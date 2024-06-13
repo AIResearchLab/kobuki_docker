@@ -1,0 +1,65 @@
+name: Ubuntu Bionic ROS Humble Image
+
+on:
+  push:
+    branches: 
+      - main
+    paths:
+      - ".github/workflows/kobuki_jammy_humble.yml"
+      - "Dockerfile"
+
+  pull_request:
+    branches: 
+      - main
+    paths:
+      - ".github/workflows/kobuki_jammy_humble.yml"
+      - "Dockerfile"
+
+env:
+  REGISTRY: ghcr.io
+  OWNER: AIResearchLab
+  IMAGE_NAME: kobuki
+
+# https://docs.github.com/en/actions/using-jobs/using-concurrency
+concurrency:
+  # only cancel in-progress jobs or runs for the current workflow - matches against branch & tags
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+  
+jobs:
+
+  build-and-push-image:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+      packages: write
+
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v4
+
+      - name: Log in to the Container registry
+        run: |
+          docker login --username ${{ env.OWNER }} --password ${{ secrets.GH_PAT }} ghcr.io 
+        # uses: docker/login-action@v3
+        # with:
+        #   registry: ${{ env.REGISTRY }}
+        #   username: ${{ github.actor }}
+        #   password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+        platforms: linux/amd64,linux/arm64
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: |
+            ${{ env.REGISTRY }}/${{ env.OWNER }}/${{ env.IMAGE_NAME }}:latest
+            ${{ env.REGISTRY }}/${{ env.OWNER }}/${{ env.IMAGE_NAME }}:humble
+
+
