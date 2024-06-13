@@ -17,7 +17,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  OWNER: AIResearchLab
+  OWNER: airesearchlab
   IMAGE_NAME: kobuki
 
 # https://docs.github.com/en/actions/using-jobs/using-concurrency
