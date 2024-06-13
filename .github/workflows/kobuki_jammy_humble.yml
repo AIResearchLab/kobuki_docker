@@ -1,4 +1,4 @@
-name: Ubuntu Bionic ROS Humble Image
+name: ROS Humble Kobuki Contrl stack
 
 on:
   push:
@@ -53,11 +53,11 @@ jobs:
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
-        platforms: linux/amd64,linux/arm64
         with:
           context: .
           file: ./Dockerfile
           push: true
+          platforms: linux/amd64,linux/arm64
           tags: |
             ${{ env.REGISTRY }}/${{ env.OWNER }}/${{ env.IMAGE_NAME }}:latest
             ${{ env.REGISTRY }}/${{ env.OWNER }}/${{ env.IMAGE_NAME }}:humble
