@@ -1,12 +1,6 @@
 # kobuki_docker
 
-This repository contains docker files for both ARM64 and AMD64 systems. Upon completions these will be released as docker images as well.
-
-## To do list
-
-- [x] Setup the docker images
-- [ ] Add kobuki and test keyop and joyop
-- [ ] Add Nav config and test
+This repository contains docker file for kobuki system for both ARM64 and AMD64 systems. 
 
 ## Setup
 
