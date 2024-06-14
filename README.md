@@ -8,7 +8,7 @@ Add the following snippet under `services` to any compose.yaml file to add this 
 
 ```bash
   kobuki:
-    image: postgres:15.6-bookworm
+    image: ghcr.io/airesearchlab/kobuki:humble
     command: ros2 launch kobuki kobuki.launch.py
     restart: unless-stopped
     privileged: true

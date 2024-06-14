@@ -23,7 +23,8 @@ RUN apt-get install -y --no-install-recommends  ros-dev-tools \
                                                 ros-humble-diagnostics \
                                                 ros-humble-joint-state-publisher \
                                                 ros-humble-ros-testing \
-                                                ros-humble-action-msgs
+                                                ros-humble-action-msgs \
+                                                udev
 
 RUN apt-get clean
 
