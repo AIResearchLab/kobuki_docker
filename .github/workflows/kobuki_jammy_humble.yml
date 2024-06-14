@@ -1,6 +1,9 @@
 name: ROS Humble Kobuki Control stack
 
 on:
+  repository_dispatch:
+    types: [trigger-workflow]
+    
   push:
     branches: 
       - main
