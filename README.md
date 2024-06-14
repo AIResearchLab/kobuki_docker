@@ -17,7 +17,7 @@ Add the following snippet under `services` to any compose.yaml file to add this 
       - /dev:/dev
 ```
 
-## Setup for Pulling container from ghcr.io
+## Setup for pulling container from ghcr.io and running
 
 Clone this reposiotory
 
@@ -31,7 +31,7 @@ cd kobuki_docker
 docker compose up
 ```
 
-## Setup for building the container on device
+## Setup for building the container on device running
 
 Clone this reposiotory
 
