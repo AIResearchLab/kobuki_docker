@@ -8,6 +8,7 @@ FROM ros:humble-ros-core-jammy as base
 
 ## Parameters
 ENV KOBUKI_ROOT=/kobuki
+ENV CFLAGS=-Wno-error
 
 #############################################################################################################################
 #####
@@ -50,7 +51,6 @@ RUN rosdep init && rosdep update && rosdep install --from-paths ${KOBUKI_ROOT}/s
 WORKDIR ${KOBUKI_ROOT}
 
 RUN . /opt/ros/humble/setup.sh && colcon build
-
 WORKDIR /
 
 

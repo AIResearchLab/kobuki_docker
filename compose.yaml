@@ -3,7 +3,7 @@ services:
     build:
       dockerfile: Dockerfile
     command: ros2 launch kobuki kobuki_joystick.launch.py
-    restart: always
+    restart: unless-stopped
     privileged: true
     network_mode: host
     volumes:
