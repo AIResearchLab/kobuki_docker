@@ -28,6 +28,11 @@ git clone https://github.com/AIResearchLab/kobuki_docker.git
 Pull the Docker image and run Docker compose (No need to run `docker compose build`)
 ```bash
 cd kobuki_docker
+docker compose pull
+```
+
+Start the docker container
+```bash
 docker compose up
 ```
 
