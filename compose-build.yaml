@@ -1,6 +1,7 @@
 services:
   kobuki:
-    image: ghcr.io/airesearchlab/kobuki:humble
+    build:
+      dockerfile: Dockerfile
     command: ros2 launch kobuki kobuki.launch.py
     restart: unless-stopped
     privileged: true

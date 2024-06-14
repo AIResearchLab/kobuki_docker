@@ -2,7 +2,7 @@
 
 This repository contains dockerfile for kobuki system for both ARM64 and AMD64 systems.
 
-## Setup for Docker container from ghcr.io
+## Add this Docker container to other projects
 
 Add the following snippet under `services` to any compose.yaml file to add this container.
 
@@ -17,9 +17,21 @@ Add the following snippet under `services` to any compose.yaml file to add this 
       - /dev:/dev
 ```
 
-## Setup for Dockerfile
+## Setup for Pulling container from ghcr.io
 
-Run the following commands in the terminal to set udev rules for kobuki connection
+Clone this reposiotory
+
+```bash
+git clone https://github.com/AIResearchLab/kobuki_docker.git
+```
+
+Pull the Docker image and run Docker compose (No need to run `docker compose build`)
+```bash
+cd kobuki_docker
+docker compose up
+```
+
+## Setup for building the container on device
 
 Clone this reposiotory
 
@@ -30,13 +42,12 @@ git clone https://github.com/AIResearchLab/kobuki_docker.git
 Build the Docker image
 ```bash
 cd kobuki_docker
-docker compose build
+docker compose -f compose-build.yaml build
 ```
 
-## Startup
-
+Start the docker container
 ```bash
-docker compose up
+docker compose -f compose-build.yaml up
 ```
 
 
