@@ -86,9 +86,7 @@ WORKDIR /
 COPY --from=base / /
 
 RUN wget https://raw.githubusercontent.com/AIResearchLab/kobuki_ftdi/devel/60-kobuki.rules && \
-    cp 60-kobuki.rules /etc/udev/rules.d && \
-    service udev reload && \
-    service udev restart
+    cp 60-kobuki.rules /etc/udev/rules.d
 
 COPY workspace_entrypoint.sh /workspace_entrypoint.sh
 
