@@ -8,7 +8,6 @@ FROM ros:humble-ros-core-jammy as base
 
 ## Parameters
 ENV KOBUKI_ROOT=/kobuki
-ENV CFLAGS=-Wno-error
 
 #############################################################################################################################
 #####
@@ -84,6 +83,11 @@ ENV KOBUKI_ROOT=/kobuki
 WORKDIR /
 
 COPY --from=base / /
+
+RUN wget https://raw.githubusercontent.com/kobuki-base/kobuki_ftdi/devel/60-kobuki.rules && \
+    cp 60-kobuki.rules /etc/udev/rules.d && \
+    service udev reload && \
+    service udev restart
 
 COPY workspace_entrypoint.sh /workspace_entrypoint.sh
 
