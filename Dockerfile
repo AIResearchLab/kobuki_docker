@@ -19,11 +19,12 @@ WORKDIR /
 
 RUN apt-get update -y
 RUN apt-get install -y --no-install-recommends  ros-dev-tools \
-                                                ros-humble-angles \
-                                                ros-humble-diagnostics \
-                                                ros-humble-joint-state-publisher \
-                                                ros-humble-ros-testing \
-                                                ros-humble-action-msgs \
+                                                ros-$ROS_DISTRO-angles \
+                                                ros-$ROS_DISTRO-diagnostics \
+                                                ros-$ROS_DISTRO-joint-state-publisher \
+                                                ros-$ROS_DISTRO-ros-testing \
+                                                ros-$ROS_DISTRO-action-msgs \
+                                                ros-$ROS_DISTRO-rmw-cyclonedds-cpp \
                                                 udev
 
 RUN apt-get clean
@@ -82,6 +83,7 @@ FROM ros:humble-ros-base-jammy as final
 
 ## Parameters
 ENV KOBUKI_ROOT=/kobuki
+ENV RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
 
 WORKDIR /
 
