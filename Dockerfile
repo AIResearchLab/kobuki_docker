@@ -4,7 +4,7 @@
 #----
 #---------------------------------------------------------------------------------------------------------------------------
 
-FROM ros:humble-ros-core-jammy as base
+FROM ros:humble-ros-base-jammy as base
 
 ## Parameters
 ENV KOBUKI_ROOT=/kobuki
@@ -76,7 +76,7 @@ RUN apt-get clean
 #---------------------------------------------------------------------------------------------------------------------------
 
 
-FROM ros:humble-ros-core-jammy as final
+FROM ros:humble-ros-base-jammy as final
 
 ## Parameters
 ENV KOBUKI_ROOT=/kobuki
