@@ -39,6 +39,8 @@ WORKDIR ${KOBUKI_ROOT}/src
 RUN git clone --recurse-submodules https://github.com/AIResearchLab/kobuki.git
 RUN git clone --recurse-submodules https://github.com/AIResearchLab/kobuki_dependencies.git 
 
+RUN rm /etc/ros/rosdep/sources.list.d/20-default.list
+
 RUN rosdep init && rosdep update && rosdep install --from-paths ${KOBUKI_ROOT}/src -y --ignore-src
 
 
