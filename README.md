@@ -1,6 +1,7 @@
 # kobuki_docker
 
-This repository contains dockerfile for kobuki system for both ARM64 and AMD64 systems.
+This repository contains dockerfile for kobuki system for both ARM64 and AMD64 systems.  This image bases itself on [AIResearchLab/kobuki](https://github.com/AIResearchLab/kobuki)
+
 
 ## Add this Docker container to other projects
 
