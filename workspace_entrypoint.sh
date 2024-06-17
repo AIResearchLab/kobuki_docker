@@ -1,10 +1,8 @@
 #!/bin/bash
 set -e
 
-# reload udev
+# start udev
 /lib/systemd/systemd-udevd --daemon
-# service udev reload
-# service udev restart
     
 # setup ros2 environment
 source "/opt/ros/$ROS_DISTRO/setup.bash"
